@@ -1,31 +1,4 @@
-import Image from "next/image";
 import Link from "next/link";
-
-function Navbar() {
-  return (
-    <header className="sticky top-0 z-10 bg-background/80 backdrop-blur border-b border-black/10 dark:border-white/10">
-      <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-        <Link href="/" className="text-lg font-semibold">
-          My Store
-        </Link>
-        <div className="flex items-center gap-4">
-          <Link
-            href="/products"
-            className="text-sm hover:underline underline-offset-4"
-          >
-            Products
-          </Link>
-          <Link
-            href="/login"
-            className="inline-flex items-center rounded-md border border-black/10 dark:border-white/20 px-3 py-1.5 text-sm hover:bg-black/5 dark:hover:bg-white/10"
-          >
-            Log in
-          </Link>
-        </div>
-      </nav>
-    </header>
-  );
-}
 
 function Hero() {
   return (
@@ -109,35 +82,11 @@ function ProductHighlights() {
   );
 }
 
-function Footer() {
-  return (
-    <footer className="border-t border-black/10 dark:border-white/10">
-      <div className="mx-auto max-w-6xl px-4 py-8 flex items-center justify-between text-sm">
-        <p className="text-black/70 dark:text-white/70">
-          © {new Date().getFullYear()} My Store
-        </p>
-        <div className="flex items-center gap-4">
-          <Link href="/products" className="hover:underline underline-offset-4">
-            Products
-          </Link>
-          <Link href="/login" className="hover:underline underline-offset-4">
-            Log in
-          </Link>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col font-sans">
-      <Navbar />
-      <main className="flex-1">
-        <Hero />
-        <ProductHighlights />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Hero />
+      <ProductHighlights />
+    </>
   );
 }

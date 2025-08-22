@@ -23,12 +23,7 @@ export default async function ProductsPage() {
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Products</h1>
-        <Link href="/" className="text-sm hover:underline underline-offset-4">
-          Back to Home
-        </Link>
-      </div>
+      <h1 className="text-2xl font-semibold">Products</h1>
 
       <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((p) => (

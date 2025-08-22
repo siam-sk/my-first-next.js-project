@@ -2,6 +2,7 @@ import Link from "next/link";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import type { Product } from "@/lib/products";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
 
@@ -14,6 +15,14 @@ async function fetchProduct(id: string): Promise<Product | null> {
   if (res.status === 404) return null;
   if (!res.ok) throw new Error("Failed to load product");
   return res.json();
+}
+
+export async function generateMetadata(
+  { params }: { params: { id: string } }
+): Promise<Metadata> {
+  const product = await fetchProduct(params.id);
+  if (!product) return { title: "Product not found" };
+  return { title: `${product.name} • Products` };
 }
 
 export default async function ProductDetailsPage({ params }: { params: { id: string } }) {
