@@ -1,103 +1,143 @@
 import Image from "next/image";
+import Link from "next/link";
+
+function Navbar() {
+  return (
+    <header className="sticky top-0 z-10 bg-background/80 backdrop-blur border-b border-black/10 dark:border-white/10">
+      <nav className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+        <Link href="/" className="text-lg font-semibold">
+          My Store
+        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            href="/products"
+            className="text-sm hover:underline underline-offset-4"
+          >
+            Products
+          </Link>
+          <Link
+            href="/login"
+            className="inline-flex items-center rounded-md border border-black/10 dark:border-white/20 px-3 py-1.5 text-sm hover:bg-black/5 dark:hover:bg-white/10"
+          >
+            Log in
+          </Link>
+        </div>
+      </nav>
+    </header>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="bg-gradient-to-b from-background to-black/[.03] dark:to-white/[.05]">
+      <div className="mx-auto max-w-6xl px-4 py-20 text-center">
+        <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+          Discover products you’ll love
+        </h1>
+        <p className="mt-4 text-balance text-base sm:text-lg text-black/70 dark:text-white/70">
+          Browse our catalog and explore product details. Sign in to manage and
+          add new products.
+        </p>
+        <div className="mt-8 flex items-center justify-center gap-3">
+          <Link
+            href="/products"
+            className="rounded-md bg-foreground text-background px-5 py-2.5 text-sm font-medium hover:opacity-90"
+          >
+            View Products
+          </Link>
+          <Link
+            href="/login"
+            className="rounded-md border border-black/15 dark:border-white/20 px-5 py-2.5 text-sm hover:bg-black/5 dark:hover:bg-white/10"
+          >
+            Log in
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ProductHighlights() {
+  const items = [
+    {
+      title: "Fast Shipping",
+      desc: "Quick delivery on all orders.",
+      emoji: "🚀",
+    },
+    {
+      title: "Quality Assured",
+      desc: "Top-rated items curated for you.",
+      emoji: "✅",
+    },
+    {
+      title: "Great Support",
+      desc: "We’re here to help 24/7.",
+      emoji: "💬",
+    },
+  ];
+
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-16">
+      <h2 className="text-2xl sm:text-3xl font-semibold text-center">
+        Product Highlights
+      </h2>
+      <p className="mt-2 text-center text-black/70 dark:text-white/70">
+        A glimpse of what we offer
+      </p>
+
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {items.map((item) => (
+          <Link
+            key={item.title}
+            href="/products"
+            className="group rounded-lg border border-black/10 dark:border-white/15 p-6 hover:shadow-sm transition-shadow"
+          >
+            <div className="text-4xl">{item.emoji}</div>
+            <h3 className="mt-4 text-lg font-medium group-hover:underline underline-offset-4">
+              {item.title}
+            </h3>
+            <p className="mt-1 text-sm text-black/70 dark:text-white/70">
+              {item.desc}
+            </p>
+            <span className="mt-4 inline-block text-sm text-blue-600 dark:text-blue-400">
+              Explore products →
+            </span>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="border-t border-black/10 dark:border-white/10">
+      <div className="mx-auto max-w-6xl px-4 py-8 flex items-center justify-between text-sm">
+        <p className="text-black/70 dark:text-white/70">
+          © {new Date().getFullYear()} My Store
+        </p>
+        <div className="flex items-center gap-4">
+          <Link href="/products" className="hover:underline underline-offset-4">
+            Products
+          </Link>
+          <Link href="/login" className="hover:underline underline-offset-4">
+            Log in
+          </Link>
+        </div>
+      </div>
+    </footer>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <div className="min-h-screen flex flex-col font-sans">
+      <Navbar />
+      <main className="flex-1">
+        <Hero />
+        <ProductHighlights />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      <Footer />
     </div>
   );
 }
